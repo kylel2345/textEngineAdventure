@@ -1,0 +1,35 @@
+<Scene>
+    <desc>
+        <!--
+            Shown to players when entering a scene, this should contain the description of the scene.
+        -->
+        As you enter the Helco-Saeb Hotel, you can't help but to notice the yellowing on the white papered walls, and the spider webs in the corners.  Perhaps once a welcoming lobby, not it inspires slight psychological discomfort at the best of times.  Poorly lit, worn carpet, and a general sense of despair greet you with a wry smile.
+    </desc>
+
+    <items>
+        <!--
+            This is a list of Items in the area.
+        -->
+        Room key #6
+        Plastic fruit
+        Broken lamp
+    </items>
+
+    <chars>
+        <!--
+            This is a list of Characters in the area.
+        -->
+        Mr. Guisseman
+        Anxious Guest
+        Annoyed Guest
+    </chars>
+
+    <exits>
+        <!--
+            This is a list of linked scene names.
+        -->
+        Elevator
+        Door to Pratker Street
+        Back Room  [Employees Only]
+    </exits>
+</Scene>
