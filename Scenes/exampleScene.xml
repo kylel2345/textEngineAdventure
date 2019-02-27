@@ -1,25 +1,25 @@
 <Scene>
-    <desc>
+    <Desc>
         <!--
             Shown to players when entering a scene, this should contain the description of the scene.
         -->
-    </desc>
+    </Desc>
 
-    <items>
+    <Items>
         <!--
             This is a list of Items in the area.
         -->
-    </items>
+    </Items>
 
-    <chars>
+    <Chars>
         <!--
             This is a list of Characters in the area.
         -->
-    </chars>
+    </Chars>
 
-    <exits>
+    <Exits>
         <!--
             This is a list of linked scene names.
         -->
-    </exits>
+    </Exits>
 </Scene>

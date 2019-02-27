@@ -5,6 +5,11 @@ class SceneParser:
 
     __instance = None
 
+    xmlTags = ["Desc",
+               "Items",
+               "Chars",
+               "Exits"]
+
     @staticmethod
     def getInstance():
         if SceneParser.__instance is not None:
@@ -17,11 +22,11 @@ class SceneParser:
         if SceneParser.__instance is not None:
             raise Exception("attempted another init of a Singleton!")
         else:
-            self.elementTree =  None
-            self.sDesc =        None
-            self.sItems =       None
-            self.sChars =       None
-            self.sExits =       None
+            self.elementTree    = None
+            self.sDesc          = None
+            self.sItems         = None
+            self.sChars         = None
+            self.sExits         = None
             SceneParser.__instance = self
 
     def updateScene(self, SceneName):
@@ -35,23 +40,46 @@ class SceneParser:
     def parseScene(self):
         try:
             root = self.elementTree.getroot()
-            for child in root: #note this assumes that the xml fields are in the correct order
-                self.parseSceneTag(child)
+            for tag in SceneParser.xmlTags:
+                element = root.find(".//{0}".format(tag))
+                if element is not None:
+                    self.parseSceneElement(element)
+                else:
+                    print("could not find tag: {0}".format(tag), file=sys.stderr)
 
         except Exception as e:
             print(e, file=sys.stderr)
 
-    def parseSceneTag(self, element):
+    def parseSceneElement(self, element):
         try:
-            if element.text is not None:
-                print("{0}: {1}".format(element.tag, element.text))
-
-            for tag in element:
-                print("{0}: {1}".format(element.tag, tag.text))
+            #retrieve the attribute for the parsing function we want to use, then call it
+            methodName = "parse{0}Tag".format(element.tag)
+            method = getattr(self, methodName)
+            method(element)
 
         except Exception as e:
-            print(e, file=sys.stderr)
+            print("Scene element parsing failed! {0}".format(e), file=sys.stderr)
 
+    def parseDescTag(self, element):
+        self.sDesc = element.text.strip()
+
+    def parseItemsTag(self, element):
+        self.sItems = SceneParser.parseTagIntoArray(element.text)
+
+    def parseCharsTag(self, element):
+        self.sChars = SceneParser.parseTagIntoArray(element.text)
+
+    def parseExitsTag(self, element):
+        self.sExits = SceneParser.parseTagIntoArray(element.text)
+
+    @staticmethod
+    def parseTagIntoArray(text):
+        temp = []
+        strippedText = text.strip().split("\n")
+        for value in strippedText:  # remove superfluous whitespace, then split on remaining newlines
+            temp.append(value.strip()) #remove any risidual tabbing of items
+
+        return temp
 
 
 sp = SceneParser.getInstance()
