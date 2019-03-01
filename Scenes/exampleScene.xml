@@ -8,18 +8,30 @@
     <Items>
         <!--
             This is a list of Items in the area.
+            <Item>[nameOfItem]</Item> note: there needs to be a corresponding Item in the Items subdirectory to load in
+            .
+            .
+            .
         -->
     </Items>
 
     <Chars>
         <!--
             This is a list of Characters in the area.
+            <Char>[nameOfItem]</Char> note: there needs to be a corresponding Char in the Chars subdirectory to load in
+            .
+            .
+            .
         -->
     </Chars>
 
     <Exits>
         <!--
             This is a list of linked scene names.
+            <Exit>[nameOfItem]</Exit> note: there needs to be a corresponding Exit in the Exits subdirectory to load in
+            .
+            .
+            .
         -->
     </Exits>
 </Scene>

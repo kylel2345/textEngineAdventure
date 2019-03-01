@@ -10,26 +10,26 @@
         <!--
             This is a list of Items in the area.
         -->
-        Room key #6
-        Plastic fruit
-        Broken lamp
+        <Item>Room key #6</Item>
+        <Item>Plastic fruit</Item>
+        <Item>Broken lamp</Item>
     </Items>
 
     <Chars>
         <!--
             This is a list of Characters in the area.
         -->
-        Mr. Guisseman
-        Anxious Guest
-        Annoyed Guest
+        <Char>Mr. Guisseman</Char>
+        <Char>Anxious Guest</Char>
+        <Char> Annoyed Guest</Char>
     </Chars>
 
     <Exits>
         <!--
             This is a list of linked scene names.
         -->
-        Elevator
-        Door to Pratker Street
-        Back Room  [Employees Only]
+        <Exit>Elevator</Exit>
+        <Exit>Door to Pratker Street</Exit>
+        <Exit>Back Room  [Employees Only]</Exit>
     </Exits>
 </Scene>
