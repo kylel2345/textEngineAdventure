@@ -1,6 +1,10 @@
 import xml.etree.ElementTree as ET
 import sys
 
+from Item import Item
+from Char import Char
+from Exit import Exit
+
 class SceneParser:
 
     __instance = None
@@ -52,7 +56,7 @@ class SceneParser:
 
     def parseSceneElement(self, element):
         try:
-            #retrieve the attribute for the parsing function we want to use, then call it
+            # retrieve the attribute for the parsing function we want to use, then call it
             methodName = "parse{0}Tag".format(element.tag)
             method = getattr(self, methodName)
             method(element)
@@ -64,20 +68,29 @@ class SceneParser:
         self.sDesc = element.text.strip()
 
     def parseItemsTag(self, element):
-        self.sItems = SceneParser.parseTagIntoArray(element.text)
+        itemNames = SceneParser.parseTagIntoArray(element.text)
+        self.sItems = []
+        for item in itemNames:
+            self.sItems.append(Item(item))
 
     def parseCharsTag(self, element):
-        self.sChars = SceneParser.parseTagIntoArray(element.text)
+        charNames = SceneParser.parseTagIntoArray(element.text)
+        self.sChars = []
+        for char in charNames:
+            self.sChars.append(Char(char))
 
     def parseExitsTag(self, element):
-        self.sExits = SceneParser.parseTagIntoArray(element.text)
+        exitNames = SceneParser.parseTagIntoArray(element.text)
+        self.sExits = []
+        for exit in exitNames:
+            self.sExits.append(Exit(exit))
 
     @staticmethod
     def parseTagIntoArray(text):
         temp = []
         strippedText = text.strip().split("\n")
         for value in strippedText:  # remove superfluous whitespace, then split on remaining newlines
-            temp.append(value.strip()) #remove any risidual tabbing of items
+            temp.append(value.strip())  # remove any risidual tabbing of items
 
         return temp
 
