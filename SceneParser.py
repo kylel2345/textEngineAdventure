@@ -5,6 +5,7 @@ from Item import Item
 from Char import Char
 from Exit import Exit
 
+
 class SceneParser:
 
     __instance = None
