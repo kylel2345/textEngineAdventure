@@ -1,6 +1,8 @@
 import xml.etree.ElementTree as ET
 import sys
 
+from ItemParser import ItemParser
+
 from Item import Item
 from Char import Char
 from Exit import Exit

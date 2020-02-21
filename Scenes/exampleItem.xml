@@ -1,0 +1,8 @@
+<Item>
+    <ConsumedOnUse></ConsumedOnUse>     <!-- Bool -->
+    <Interactable></Interactable>       <!-- Bool -->
+    <KeyItem></KeyItem>                 <!-- Bool -->
+    <Name></Name>                       <!-- String -->
+    <Portable></Portable>               <!-- Bool -->
+    <Weight></Weight>                   <!-- uint -->
+</Item>
