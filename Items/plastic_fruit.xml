@@ -1,0 +1,36 @@
+<Item>
+    <Name>
+        <!--The name that is reported to the player-->
+        Basket of Plastic Fruit
+    </Name>
+
+    <Description>
+        <!--The description that is repeated back to the player-->
+        Some plastic fruit. Or perhaps wax...?
+    </Description>
+
+    <Weight>
+        <!--How heavy is the object?-->
+        2.5
+    </Weight>
+
+    <KeyItem>
+        <!--Is this item particularly important-->
+        False
+    </KeyItem>
+
+    <Usable>
+        <!--Is the item Usable by the player-->
+        True
+    </Usable>
+
+    <ConsumedOnUse>
+        <!--Is the item considered destroyed after it is used-->
+        True
+    </ConsumedOnUse>
+
+    <Portable>
+        <!--Is this item portable-->
+        False
+    </Portable>
+</Item>

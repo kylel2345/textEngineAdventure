@@ -10,26 +10,26 @@
         <!--
             This is a list of Items in the area.
         -->
-        <Item>Room key #6</Item>
-        <Item>Plastic fruit</Item>
-        <Item>Broken lamp</Item>
+        <Item>room_key_6</Item>
+        <Item>plastic_fruit</Item>
+        <Item>broken_lamp</Item>
     </Items>
 
     <Chars>
         <!--
             This is a list of Characters in the area.
         -->
-        <Char>Mr. Guisseman</Char>
-        <Char>Anxious Guest</Char>
-        <Char> Annoyed Guest</Char>
+        <Char>mr_guisseman</Char>
+        <Char>anxious_guest</Char>
+        <Char> annoyed_guest</Char>
     </Chars>
 
     <Exits>
         <!--
             This is a list of linked scene names.
         -->
-        <Exit>Elevator</Exit>
-        <Exit>Door to Pratker Street</Exit>
-        <Exit>Back Room  [Employees Only]</Exit>
+        <Exit>elevator</Exit>
+        <Exit>door_to_pratker_street</Exit>
+        <Exit>back_room_employees_only]</Exit>
     </Exits>
 </Scene>

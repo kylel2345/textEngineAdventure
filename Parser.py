@@ -9,7 +9,7 @@ class Parser(ABC):
 
     @staticmethod
     @abstractmethod
-    def getInstanc(self):
+    def getInstance(self):
         pass
 
     @staticmethod

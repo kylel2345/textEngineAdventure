@@ -18,7 +18,7 @@
     <Chars>
         <!--
             This is a list of Characters in the area.
-            <Char>[nameOfItem]</Char> note: there needs to be a corresponding Char in the Chars subdirectory to load in
+            <Char>[nameOfChar]</Char> note: there needs to be a corresponding Char in the Chars subdirectory to load in
             .
             .
             .
@@ -28,7 +28,7 @@
     <Exits>
         <!--
             This is a list of linked scene names.
-            <Exit>[nameOfItem]</Exit> note: there needs to be a corresponding Exit in the Exits subdirectory to load in
+            <Exit>[nameOfExit]</Exit> note: there needs to be a corresponding Exit in the Exits subdirectory to load in
             .
             .
             .

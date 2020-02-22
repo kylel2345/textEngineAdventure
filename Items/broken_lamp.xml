@@ -1,0 +1,36 @@
+<Item>
+    <Name>
+        <!--The name that is reported to the player-->
+        Broken Lamp
+    </Name>
+
+    <Description>
+        <!--The description that is repeated back to the player-->
+        A broken glass lamp. It looks as though it was knocked over and shattered on hitting the ground.
+    </Description>
+
+    <Weight>
+        <!--How heavy is the object?-->
+        7.2
+    </Weight>
+
+    <KeyItem>
+        <!--Is this item particularly important-->
+        False
+    </KeyItem>
+
+    <Usable>
+        <!--Is the item Usable by the player-->
+        False
+    </Usable>
+
+    <ConsumedOnUse>
+        <!--Is the item considered destroyed after it is used-->
+        False
+    </ConsumedOnUse>
+
+    <Portable>
+        <!--Is this item portable-->
+        False
+    </Portable>
+</Item>

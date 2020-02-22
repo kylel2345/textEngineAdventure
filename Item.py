@@ -1,10 +1,11 @@
 class Item:
-    def __init__(self, itemName):
-        self.itemName = itemName
 
-        self.__name = None
-        self.__consumedOnUse    = None
-        self.__interactable     = None
-        self.__keyItem          = None
-        self.__portable         = None
-        self.__Weight           = None
+    def __init__(self, itemData):
+        self.__itemName = itemData["Name"]
+        self.__consumedOnUse    = bool(itemData["ConsumedOnUse"])
+        self.__usable           = bool(itemData["Usable"])
+        self.__keyItem          = bool(itemData["KeyItem"])
+        self.__portable         = bool(itemData["Portable"])
+        self.__Weight           = float(itemData["Weight"])
+        self.__Description      = itemData["Description"]
+

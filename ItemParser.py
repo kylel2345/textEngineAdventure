@@ -7,11 +7,13 @@ import sys
 class ItemParser(Parser):
     __instance = None
 
-    xmlTags = ["ConsumedOnUse",
-               "Interactable",
+    xmlTags = ["Name",
+               "Description",
+               "Weight",
                "KeyItem",
-               "Portable",
-               "Weight"]
+               "Usable",
+               "ConsumedOnUse",
+               "Portable"]
 
     @staticmethod
     def getInstance():
@@ -33,16 +35,16 @@ class ItemParser(Parser):
         if ItemParser.__instance is not None:
             raise Exception("attempted another init of a Singleton!")
         else:
-            self.elementTree    = None
-            self.mItem          = None
-            self.filename       = None
-            ItemParser.__instance = self
+            self.__elementTree        = None
+            self.__itemData         = {}
+            self.__filename           = None
+            ItemParser.__instance   = self
 
     def updateFile(self, fileName):
         try:
-            self.filename = fileName
-            self.mItem = Item()
-            self.elementTree = ET.parse("Items/{0}.xml".format(fileName))
+            self.__filename = fileName
+            self.__itemData = {}
+            self.__elementTree = ET.parse("Items/{0}.xml".format(fileName))
 
         except Exception as e:
             print(e, file=sys.stderr)
@@ -50,13 +52,29 @@ class ItemParser(Parser):
 
     def parseFile(self):
         try:
-            root = self.elementTree.getroot()
+            root = self.__elementTree.getroot()
             for tag in ItemParser.xmlTags:
                 element = root.find(".//{0}".format(tag))
                 if element is not None:
                     self.parseElement(element)
                 else:
-                    print("ERR ItemParser({0}) could not find tag: {1}".format(self.filename, tag), file=sys.stderr)
+                    print("ERR ItemParser({0}) could not find tag: {1}".format(self.__filename, tag), file=sys.stderr)
 
         except Exception as e:
             print(e, file=sys.stderr)
+
+    def parseElement(self, element):
+        self.__itemData[element.tag] = element.text.strip()
+
+    def packageParsedInfo(self):
+        dict = {}
+        for entry in ItemParser.xmlTags:
+            dict[entry] = self.__itemData[entry]
+
+        return dict
+
+    def returnParsedInfo(self):
+        self.parseFile()
+        data = self.packageParsedInfo()
+        return Item(data)
+

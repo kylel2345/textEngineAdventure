@@ -29,16 +29,17 @@ class SceneParser:
         if SceneParser.__instance is not None:
             raise Exception("attempted another init of a Singleton!")
         else:
-            self.elementTree    = None
-            self.sDesc          = None
-            self.sItems         = None
-            self.sChars         = None
-            self.sExits         = None
-            SceneParser.__instance = self
+            self.__elementTree      = None
+            self.__itemParser       = ItemParser.getInstance()
+            self.__sDesc            = None
+            self.__sItems           = None
+            self.__sChars           = None
+            self.__sExits           = None
+            SceneParser.__instance  = self
 
     def updateScene(self, SceneName):
         try:
-            self.elementTree = ET.parse("Scenes/{0}.xml".format(SceneName))
+            self.__elementTree = ET.parse("Scenes/{0}.xml".format(SceneName))
 
         except Exception as e:
             print(e, file=sys.stderr)
@@ -46,7 +47,7 @@ class SceneParser:
 
     def parseScene(self):
         try:
-            root = self.elementTree.getroot()
+            root = self.__elementTree.getroot()
             for tag in SceneParser.xmlTags:
                 element = root.find(".//{0}".format(tag))
                 if element is not None:
@@ -68,32 +69,34 @@ class SceneParser:
             print("Scene element parsing failed! {0}".format(e), file=sys.stderr)
 
     def parseDescTag(self, element):
-        self.sDesc = element.text.strip()
+        self.__sDesc = element.text.strip()
 
     def parseItemsTag(self, element):
-        itemNames = SceneParser.parseTagIntoArray(element.text)
-        self.sItems = []
-        for item in itemNames:
-            self.sItems.append(Item(item))
+        itemNames = SceneParser.parseTagIntoArray(element)
+        self.__sItems = []
+        for val in itemNames:
+            self.__itemParser.updateFile(val)
+            newItem = self.__itemParser.returnParsedInfo()
+            self.__sItems.append(newItem)
 
     def parseCharsTag(self, element):
-        charNames = SceneParser.parseTagIntoArray(element.text)
-        self.sChars = []
+        charNames = SceneParser.parseTagIntoArray(element)
+        self.__sChars = []
         for char in charNames:
-            self.sChars.append(Char(char))
+            self.__sChars.append(Char(char))
 
     def parseExitsTag(self, element):
-        exitNames = SceneParser.parseTagIntoArray(element.text)
-        self.sExits = []
+        exitNames = SceneParser.parseTagIntoArray(element)
+        self.__sExits = []
         for exit in exitNames:
-            self.sExits.append(Exit(exit))
+            self.__sExits.append(Exit(exit))
 
     @staticmethod
-    def parseTagIntoArray(text):
+    def parseTagIntoArray(tag):
         temp = []
-        strippedText = text.strip().split("\n")
-        for value in strippedText:  # remove superfluous whitespace, then split on remaining newlines
-            temp.append(value.strip())  # remove any risidual tabbing of items
+        subTags = tag.findall("Item")
+        for value in subTags:  # remove superfluous whitespace, then split on remaining newlines
+            temp.append(value.text.strip())  # remove any risidual tabbing of items
 
         return temp
 
